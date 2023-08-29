@@ -1,10 +1,10 @@
 package com.example.batch_base;
 
 import com.example.batch_base.batch.BatchStatus;
+import com.example.batch_base.batch.Job;
 import com.example.batch_base.batch.JobExecution;
 import com.example.batch_base.customer.Customer;
 import com.example.batch_base.customer.CustomerRepository;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -22,7 +22,7 @@ class DormantBatchJobTest {
     private CustomerRepository customerRepository;
 
     @Autowired
-    private DormantBatchJob dormantBatchJob;
+    private Job dormantBatchJob;
 
     @BeforeEach
     public void setup() {
@@ -102,7 +102,7 @@ class DormantBatchJobTest {
     @Test
     @DisplayName("배치가 실패하면 BatchStatus는 FAILED를 반환해야한다.")
     void test4() {
-        final DormantBatchJob dormantBatchJob = new DormantBatchJob(null);
+        final Job dormantBatchJob = new Job(null, null);
 
         final JobExecution result = dormantBatchJob.execute();
 
