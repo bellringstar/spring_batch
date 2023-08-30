@@ -1,4 +1,4 @@
-package com.example.batch_base.application;
+package com.example.batch_base.application.dormant;
 
 import com.example.batch_base.EmailProvider;
 import com.example.batch_base.batch.JobExecution;
@@ -21,7 +21,12 @@ public class DormantBatchJobExecutionListener implements JobExecutionListener {
 
     @Override
     public void afterJob(JobExecution jobExecution) {
-        emailProvider.send("admin@gmail.com", "배치 완료 알림",
-        "DormantBatchJob이 수행됐습니다. status: " + jobExecution.getStatus());
+        // 비즈니스 로직
+        emailProvider.send(
+                "admin@fastcampus.com",
+                "배치 완료 알림",
+                "DormantBatchJob이 수행되었습니다. status :" + jobExecution.getStatus()
+        );
     }
+
 }

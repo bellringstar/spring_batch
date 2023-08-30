@@ -1,4 +1,4 @@
-package com.example.batch_base.application;
+package com.example.batch_base.application.dormant;
 
 import com.example.batch_base.EmailProvider;
 import com.example.batch_base.batch.ItemWriter;

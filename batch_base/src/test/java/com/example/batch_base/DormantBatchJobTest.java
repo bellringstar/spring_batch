@@ -3,6 +3,7 @@ package com.example.batch_base;
 import com.example.batch_base.batch.BatchStatus;
 import com.example.batch_base.batch.Job;
 import com.example.batch_base.batch.JobExecution;
+import com.example.batch_base.batch.TaskletJob;
 import com.example.batch_base.customer.Customer;
 import com.example.batch_base.customer.CustomerRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -102,11 +103,31 @@ class DormantBatchJobTest {
     @Test
     @DisplayName("배치가 실패하면 BatchStatus는 FAILED를 반환해야한다.")
     void test4() {
-        final Job dormantBatchJob = new Job(null, null);
 
+        // given
+        final Job dormantBatchJob = new TaskletJob(null);
+
+        // when
         final JobExecution result = dormantBatchJob.execute();
 
+        // then
         assertThat(result.getStatus()).isEqualTo(BatchStatus.FAILED);
+    }
+
+    @Test
+    @DisplayName("358일전에 로그인한 고객에게 휴면계정 예정자라고 메일을 발송해야한다.")
+    void test5() {
+
+        // given
+        saveCustomer(358);
+        saveCustomer(358);
+        saveCustomer(358);
+        saveCustomer(35);
+        saveCustomer(35);
+
+        // when
+        // then
+        dormantBatchJob.execute();
 
     }
 
